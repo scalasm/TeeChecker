@@ -7,4 +7,5 @@
     <string name="status_success">Done!</string>
     <string name="status_ready">Ready (click in order to perform the hardware check)</string>
     <string name="status_unknown_error">Some unknown error has happened!</string>
+    <string name="perform_check">Perform check!</string>
 </resources>

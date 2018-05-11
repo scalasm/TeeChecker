@@ -11,13 +11,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        textStatus?.text = getString( R.string.status_ready )
         textIsInsideSecureHardware?.visibility = View.INVISIBLE
         textUserAuthenticationRequirementEnforcedBySecureHardware?.visibility = View.INVISIBLE
 
         btnPerformCheck.setOnClickListener {
-            val result = KeyChainHardwareSupportHelper().check();
+            val result = KeyChainHardwareSupportHelper().check()
 
-            handleResult( result );
+            handleResult( result )
         }
 
     }
