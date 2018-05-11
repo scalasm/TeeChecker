@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TeeChecker</string>
+
+    <string name="is_inside_secure_hardware">Inside secure hardware? %1$b!</string>
+    <string name="is_user_authentication_requirement_enforced_by_secure_hardware">Is User Authentication Requirement Enforced By Secure Hardware? %1$b!</string>
+    <string name="device_not_supported">Device is older than API level 23 (Android 6.0)!</string>
+    <string name="status_success">Done!</string>
+    <string name="status_ready">Ready (click in order to perform the hardware check)</string>
+    <string name="status_unknown_error">Some unknown error has happened!</string>
+</resources>
