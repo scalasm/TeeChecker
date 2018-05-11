@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">TeeChecker</string>
 
-    <string name="is_inside_secure_hardware">Inside secure hardware? %1$b!</string>
-    <string name="is_user_authentication_requirement_enforced_by_secure_hardware">Is User Authentication Requirement Enforced By Secure Hardware? %1$b!</string>
+    <string name="is_inside_secure_hardware">Inside secure hardware</string>
+    <string name="is_inside_secure_hardware_hint">Returns true if the key resides inside secure hardware (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).\nKey material of such keys is available in plaintext only inside the secure hardware and is not exposed outside of it.</string>
+    <string name="is_user_authentication_requirement_enforced_by_secure_hardware">User Authentication Requirement Enforced By Secure Hardware</string>
+    <string name="is_user_authentication_requirement_enforced_by_secure_hardware_hint">Returns true if the requirement that this key can only be used if the user has been authenticated is enforced by secure hardware (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).</string>
     <string name="device_not_supported">Device is older than API level 23 (Android 6.0)!</string>
     <string name="status_success">Done!</string>
     <string name="status_ready">Ready (click in order to perform the hardware check)</string>
     <string name="status_unknown_error">Some unknown error has happened!</string>
     <string name="perform_check">Perform check!</string>
+    <string name="check_result_image">Check result image</string>
 </resources>

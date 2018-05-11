@@ -1,16 +1,17 @@
-package it.linksmt.teechecker
+package it.linksmt.teechecker.util
 
-import android.content.Context
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyInfo
 import android.security.keystore.KeyProperties
 import android.util.Log
+import it.linksmt.teechecker.R
 import java.security.KeyFactory
 import java.security.KeyPairGenerator
 import java.security.spec.InvalidKeySpecException
 
 class KeyChainHardwareSupportHelper() {
+    private val TAG = "KCHSH"
 
     fun check() : KeychainHardwareSupportoResult {
         lateinit var result : KeychainHardwareSupportoResult
@@ -35,29 +36,34 @@ class KeyChainHardwareSupportHelper() {
                 try {
                     keyInfo = factory.getKeySpec(key, KeyInfo::class.java)
 
+                    result = KeychainHardwareSupportoResult( Result.OK )
+
                     // Returns true if the key resides inside secure hardware (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).
                     // Key material of such keys is available in plaintext only inside the secure hardware and is not exposed outside of it.
                     val isInsideSecureHardware = keyInfo.isInsideSecureHardware
+                    result.addItem( R.string.is_inside_secure_hardware,
+                            R.string.is_inside_secure_hardware_hint,
+                            isInsideSecureHardware )
 
                     // Returns true if the requirement that this key can only be used if the user has been authenticated is enforced by secure hardware
                     // (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).
                     val userAuthenticationRequirementEnforcedBySecureHardware = keyInfo.isUserAuthenticationRequirementEnforcedBySecureHardware
-
-                    result = KeychainHardwareSupportoResult( Result.OK, isInsideSecureHardware, userAuthenticationRequirementEnforcedBySecureHardware )
+                    result.addItem( R.string.is_user_authentication_requirement_enforced_by_secure_hardware,
+                            R.string.is_user_authentication_requirement_enforced_by_secure_hardware_hint,
+                            userAuthenticationRequirementEnforcedBySecureHardware )
 
                 } catch (e: InvalidKeySpecException) {
-                    result = KeychainHardwareSupportoResult( Result.INTERNAL_INVALID_KEY_SPEC, e )
+                    result = KeychainHardwareSupportoResult(Result.INTERNAL_INVALID_KEY_SPEC, e)
                 }
             } catch (e: Exception) {
-                result = KeychainHardwareSupportoResult( Result.INTERNAL_UNKNOWN_ERROR, e )
+                result = KeychainHardwareSupportoResult(Result.INTERNAL_UNKNOWN_ERROR, e)
 
-                Log.e("KK", "Error while checking key")
+                Log.e( TAG, "Error while checking key")
             }
-
         } else {
-            result = KeychainHardwareSupportoResult( Result.ANDROID_VERSION_OLDER_THAN_6_0 )
+            result = KeychainHardwareSupportoResult(Result.ANDROID_VERSION_OLDER_THAN_6_0)
         }
-        Log.d("TeeChecker", "Checked: $result" )
+        Log.d( TAG, "Checked: $result" )
 
         return result
     }
