@@ -1,7 +1,5 @@
 package it.linksmt.teechecker.util
 
-import it.linksmt.teechecker.model.HardwareCheckItem
-
 /**
  * Type of the keychain HW check.
  */
@@ -27,8 +25,8 @@ enum class Result {
 /**
  * Result and details of the check that has been performed.
  */
-data class KeychainHardwareSupportoResult constructor (val result : Result, val exception : Exception? = null ) {
-    val items = mutableListOf<HardwareCheckItem>()
+data class CheckItemsResult constructor (val result : Result, val exception : Exception? = null ) {
+    val items = mutableListOf<CheckItem>()
 
     val isSuccessful : Boolean
         get() = Result.OK == result
@@ -39,8 +37,8 @@ data class KeychainHardwareSupportoResult constructor (val result : Result, val 
     val errorMessage : String
         get() = exception?.message ?: ""
 
-    fun addItem(descriptionResourceId : Int, hintResourceId : Int, status : Boolean ) : KeychainHardwareSupportoResult {
-        val item = HardwareCheckItem(descriptionResourceId, hintResourceId, status)
+    fun addItem(descriptionResourceId : Int, hintResourceId : Int, status : Boolean ) : CheckItemsResult {
+        val item = CheckItem(descriptionResourceId, hintResourceId, status)
         items.add( item )
 
         return this

@@ -13,8 +13,8 @@ import java.security.spec.InvalidKeySpecException
 class KeyChainHardwareSupportHelper() {
     private val TAG = "KCHSH"
 
-    fun check() : KeychainHardwareSupportoResult {
-        lateinit var result : KeychainHardwareSupportoResult
+    fun check() : CheckItemsResult {
+        lateinit var result : CheckItemsResult
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -36,7 +36,7 @@ class KeyChainHardwareSupportHelper() {
                 try {
                     keyInfo = factory.getKeySpec(key, KeyInfo::class.java)
 
-                    result = KeychainHardwareSupportoResult( Result.OK )
+                    result = CheckItemsResult( Result.OK )
 
                     // Returns true if the key resides inside secure hardware (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).
                     // Key material of such keys is available in plaintext only inside the secure hardware and is not exposed outside of it.
@@ -53,15 +53,15 @@ class KeyChainHardwareSupportHelper() {
                             userAuthenticationRequirementEnforcedBySecureHardware )
 
                 } catch (e: InvalidKeySpecException) {
-                    result = KeychainHardwareSupportoResult(Result.INTERNAL_INVALID_KEY_SPEC, e)
+                    result = CheckItemsResult(Result.INTERNAL_INVALID_KEY_SPEC, e)
                 }
             } catch (e: Exception) {
-                result = KeychainHardwareSupportoResult(Result.INTERNAL_UNKNOWN_ERROR, e)
+                result = CheckItemsResult(Result.INTERNAL_UNKNOWN_ERROR, e)
 
                 Log.e( TAG, "Error while checking key")
             }
         } else {
-            result = KeychainHardwareSupportoResult(Result.ANDROID_VERSION_OLDER_THAN_6_0)
+            result = CheckItemsResult(Result.ANDROID_VERSION_OLDER_THAN_6_0)
         }
         Log.d( TAG, "Checked: $result" )
 

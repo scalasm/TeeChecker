@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeeChecker</string>
+    <string name="app_name">TEE Checker</string>
 
     <string name="is_inside_secure_hardware">Inside secure hardware</string>
     <string name="is_inside_secure_hardware_hint">Returns true if the key resides inside secure hardware (e.g., Trusted Execution Environment (TEE) or Secure Element (SE)).\nKey material of such keys is available in plaintext only inside the secure hardware and is not exposed outside of it.</string>

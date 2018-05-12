@@ -15,11 +15,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:text="@string/status_ready"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/btnPerformCheck"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/status_ready" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnPerformCheck"
